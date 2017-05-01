@@ -21,7 +21,7 @@ def test_parse_log_message_into_list_of_changed_files():
     changed_files = log_parser.log(log_fixtures.SAMPLE_LOG)
 
     assert 4 == len(changed_files)
-    assert 2 == changed_files['path/to/another/file/client.py']
-    assert 2 == changed_files['path/to/file/order.py']
-    assert 2 == changed_files['path/to/tests/test_client.py']
-    assert 2 == changed_files['path/to/tests/test_order.py']
+    assert 2 == changed_files['path/to/another/file/client.py'].changes
+    assert 2 == changed_files['path/to/file/order.py'].changes
+    assert 2 == changed_files['path/to/tests/test_client.py'].changes
+    assert 2 == changed_files['path/to/tests/test_order.py'].changes
