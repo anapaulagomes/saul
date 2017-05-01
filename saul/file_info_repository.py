@@ -1,4 +1,4 @@
-class FilesAuditor(object):
+class FileInfoRepository(object):
 
     def __init__(self):
         self.files = {}
