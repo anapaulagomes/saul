@@ -13,10 +13,10 @@ class CodeBaseGraph(object):
 
         return self.graph
 
-    def nodes(self):
+    def files(self):
         return self.graph.nodes()
 
-    def edges(self):
+    def related_files(self):
         return self.graph.edges()
 
     def __add_nodes(self):
