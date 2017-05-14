@@ -19,7 +19,7 @@ def test_create_codebase_graph_with_files_as_nodes():
     codebase = CodeBaseGraph(repository)
     codebase.make_graph()
 
-    assert codebase.nodes() == ['path/to/file.py', 'path/to/another_file.py', 'path/to/some_file.py']
+    assert set(codebase.nodes()) == set(['path/to/file.py', 'path/to/another_file.py', 'path/to/some_file.py'])
 
 
 def test_create_codebase_graph_with_related_files_as_edges():
@@ -38,8 +38,15 @@ def test_create_codebase_graph_with_related_files_as_edges():
 
     codebase = CodeBaseGraph(repository)
     codebase.make_graph()
-    edges = codebase.edges()
+    all_edges = codebase.edges()
+    
+    assert find_edge(all_edges, ('path/to/file.py', 'path/to/another_file.py'))
+    assert find_edge(all_edges, ('path/to/file.py', 'path/to/some_file.py'))
+    assert find_edge(all_edges, ('path/to/another_file.py', 'path/to/some_file.py'))
 
-    assert edges[0] == ('path/to/file.py', 'path/to/another_file.py')
-    assert edges[1] == ('path/to/file.py', 'path/to/some_file.py')
-    assert edges[2] == ('path/to/another_file.py', 'path/to/some_file.py')
+
+def find_edge(all_edges, wanted_edge):
+    for edge in all_edges:
+        if edge[0] == wanted_edge[0] or edge[0] == wanted_edge[1] and edge[1] == wanted_edge[0] or edge[1] == wanted_edge[1]:
+            return True
+    return False
