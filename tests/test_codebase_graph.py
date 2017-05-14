@@ -16,11 +16,30 @@ def test_create_codebase_graph_with_files_as_nodes():
     related_files = ['path/to/another_file.py', 'path/to/some_file.py']
     repository.add_or_update(a_file, related_files)
 
+    codebase = CodeBaseGraph(repository)
+    codebase.make_graph()
+
+    assert codebase.nodes() == ['path/to/file.py', 'path/to/another_file.py', 'path/to/some_file.py']
+
+
+def test_create_codebase_graph_with_related_files_as_edges():
+    repository = FileInfoRepository()
+    a_file = 'path/to/file.py'
+    related_files = ['path/to/another_file.py', 'path/to/some_file.py']
+    repository.add_or_update(a_file, related_files)
+
     another_file = 'path/to/another_file.py'
     related_files = ['path/to/file.py', 'path/to/some_file.py']
     repository.add_or_update(another_file, related_files)
 
+    some_file = 'path/to/some_file.py'
+    related_files = ['path/to/another_file.py', 'path/to/file.py']
+    repository.add_or_update(some_file, related_files)
+
     codebase = CodeBaseGraph(repository)
     codebase.make_graph()
+    edges = codebase.edges()
 
-    assert codebase.nodes() == ['path/to/file.py', 'path/to/another_file.py']
+    assert edges[0] == ('path/to/file.py', 'path/to/another_file.py')
+    assert edges[1] == ('path/to/file.py', 'path/to/some_file.py')
+    assert edges[2] == ('path/to/another_file.py', 'path/to/some_file.py')
