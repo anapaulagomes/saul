@@ -28,7 +28,7 @@ def test_increase_changes_when_file_is_already_related():
 
     a_file = 'path/to/file.py'
     related_file = 'path/to/some_file.py'
-    related_files = ['path/to/another_file.py',related_file]
+    related_files = ['path/to/another_file.py', related_file]
     auditor.add_or_update(a_file, related_files)
 
     more_related_files = [related_file]
