@@ -1,4 +1,4 @@
-from saul.file_info_repository import FileInfo
+from saul.file_info import FileInfo
 
 
 def test_add_change_when_new_related_file_is_added():
