@@ -22,6 +22,9 @@ class FileInfo(object):
         for related_file in related_files:
             self.related_files[related_file] = 1
 
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
     def add_change(self, related_files):
         self.changes += 1
         for related_file in related_files:
