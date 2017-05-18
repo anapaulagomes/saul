@@ -13,15 +13,15 @@ class CodeBaseGraph(object):
 
         return self.graph
 
-    def files(self):
-        return self.graph.nodes()
+    def files(self, data=False):
+        return self.graph.nodes(data=True if data else False)
 
     def related_files(self):
         return self.graph.edges()
 
     def __add_nodes(self):
         for a_file, a_file_info in self.repository.files.items():
-            self.graph.add_node(a_file, fileinfo=a_file_info)
+            self.graph.add_node(a_file, changes=a_file_info.changes)
 
     def __add_edges(self):
         for a_file, a_file_info in self.repository.files.items():
