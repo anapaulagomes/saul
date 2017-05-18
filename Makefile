@@ -27,7 +27,7 @@ test:
 	pytest tests
 
 test-all:
-	tox
+	tox -r
 
 coverage:
 	coverage run --source looong setup.py tests
