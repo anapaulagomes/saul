@@ -5,8 +5,8 @@ class LogParser(object):
     def __init__(self):
         self.file_repository = FileInfoRepository()
 
-    def log(self, log):
-        commits = log.split("\n\ncommit")
+    def log(self, log_content):
+        commits = log_content.split("\n\ncommit")
         for commit in commits:
             changed_files = self.commit(commit)
             for changed_file in changed_files:
