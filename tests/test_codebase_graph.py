@@ -18,7 +18,7 @@ def test_create_codebase_graph_with_files_as_nodes():
 
     codebase = CodeBaseGraph(repository)
     codebase.make_graph()
-    
+
     assert set(codebase.files()) == set(['path/to/file.py', 'path/to/another_file.py', 'path/to/some_file.py'])
 
 
@@ -59,7 +59,7 @@ def test_node_should_know_how_many_times_the_file_was_modified():
 
     node = codebase.files(data=True)[0][1]
 
-    assert node['changes'] == 2
+    assert node.get('changes') == 2
 
 
 def find_edge(all_edges, wanted_edge):
