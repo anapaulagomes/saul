@@ -57,13 +57,21 @@ def test_node_should_know_how_many_times_the_file_was_modified():
     codebase = CodeBaseGraph(repository)
     codebase.make_graph()
 
-    node = codebase.files(data=True)[0][1]
+    all_nodes = codebase.files(data=True)
+    node = find_node(all_nodes, a_file)
+    
+    assert node[1]['changes'] == 2
 
-    assert node.get('changes') == 2
 
-
+#added to keep compatibility with py2 and py3 (since the dict order are different in different versions)
 def find_edge(all_edges, wanted_edge):
     for edge in all_edges:
         if edge[0] == wanted_edge[0] or edge[0] == wanted_edge[1] and edge[1] == wanted_edge[0] or edge[1] == wanted_edge[1]:
             return True
     return False
+
+def find_node(all_nodes, wanted_node):
+    for node, data in all_nodes:
+        if node == wanted_node:
+            return (node, data)
+    return None
