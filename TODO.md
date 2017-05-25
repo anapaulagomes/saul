@@ -1,3 +1,1 @@
 - Add test to main
-- Add on README.md how to generate log file and execute the program
-- Verify why just update when execute python setup.py install
