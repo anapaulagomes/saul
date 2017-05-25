@@ -1,4 +1,5 @@
 from saul.file_info_repository import FileInfoRepository
+import re
 
 class LogParser(object):
 
@@ -19,7 +20,7 @@ class LogParser(object):
         return [self.__extract_file_name(changed_file_log) for changed_file_log in changed_files_log]
 
     def __extract_file_name(self, changed_file_log):
-        return changed_file_log.split(' ')[-1]
+        return re.split("\s|\t", changed_file_log)[-1]
 
     def __extract_changed_files_log(self, commit_log_lines):
         return [] if commit_log_lines[1].startswith('Merge:') else commit_log_lines[6:]

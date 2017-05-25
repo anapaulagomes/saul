@@ -1,4 +1,3 @@
 - Add test to main
-- Fix parser to ignore modification status
 - Add on README.md how to generate log file and execute the program
 - Verify why just update when execute python setup.py install
