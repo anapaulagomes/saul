@@ -19,6 +19,9 @@ class CodeBaseGraph(object):
     def related_files(self):
         return self.graph.edges()
 
+    def export(self):
+        return nx.write_gml(self.graph, 'codebasegraph.gml')
+
     def __add_nodes(self):
         for a_file, a_file_info in self.repository.files.items():
             self.graph.add_node(a_file, changes=a_file_info.changes)
