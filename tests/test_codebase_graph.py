@@ -64,6 +64,25 @@ def test_node_should_know_how_many_times_the_file_was_modified():
     assert node[1]['changes'] == 2
 
 
+def test_edge_should_know_how_many_times_the_files_were_modified_together():
+    repository = FileInfoRepository()
+
+    repository.add_or_update('path/to/file.py', ['path/to/another_file.py', 'path/to/some_file.py'])
+    repository.add_or_update('path/to/another_file.py', ['path/to/file.py', 'path/to/some_file.py'])
+
+    codebase = CodeBaseGraph(repository)
+    codebase.make_graph()
+    all_edges = codebase.related_files(data=True)
+
+    edge_file_another_file = find_edge(all_edges, ('path/to/file.py', 'path/to/another_file.py'))
+    edge_file_some_file = find_edge(all_edges, ('path/to/file.py', 'path/to/some_file.py'))
+    edge_another_file_some_file = find_edge(all_edges, ('path/to/another_file.py', 'path/to/some_file.py'))
+    import pdb; pdb.set_trace()
+    
+    assert edge_file_another_file[2]['changes'] == 2
+    assert edge_file_some_file[2]['changes'] == 1
+
+
 @mock.patch('saul.codebasegraph.nx.write_gml')
 def test_should_generate_gml_file_to_codebase_graph(mock_write_gml):
     repository = FileInfoRepository()
@@ -85,8 +104,8 @@ def test_should_generate_gml_file_to_codebase_graph(mock_write_gml):
 def find_edge(all_edges, wanted_edge):
     for edge in all_edges:
         if edge[0] == wanted_edge[0] or edge[0] == wanted_edge[1] and edge[1] == wanted_edge[0] or edge[1] == wanted_edge[1]:
-            return True
-    return False
+            return edge
+    return None
 
 def find_node(all_nodes, wanted_node):
     for node, data in all_nodes:

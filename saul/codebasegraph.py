@@ -7,7 +7,7 @@ class CodeBaseGraph(object):
         self.repository = repository
 
     def make_graph(self):
-        self.graph = nx.Graph()
+        self.graph = nx.DiGraph()
         self.__add_nodes()
         self.__add_edges()
 
@@ -16,8 +16,8 @@ class CodeBaseGraph(object):
     def files(self, data=False):
         return self.graph.nodes(data=True if data else False)
 
-    def related_files(self):
-        return self.graph.edges()
+    def related_files(self, data=False):
+        return self.graph.edges(data=True if data else False)
 
     def export(self):
         return nx.write_gml(self.graph, 'codebasegraph.gml')
@@ -28,5 +28,11 @@ class CodeBaseGraph(object):
 
     def __add_edges(self):
         for a_file, a_file_info in self.repository.files.items():
-            for related_files in a_file_info.related_files.keys():
-                self.graph.add_edge(a_file, related_files)
+            for related_file, changes in a_file_info.related_files.items():
+                # import pdb; pdb.set_trace()
+
+                edge_data = self.graph.get_edge_data(a_file, related_file)
+                if edge_data:
+                    self.graph[a_file][related_file] = edge_data['changes'] + changes
+                else:
+                    self.graph.add_edge(a_file, related_file, changes=changes)
