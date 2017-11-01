@@ -1,4 +1,4 @@
-from unittest import mock
+import mock
 from saul.file_info_repository import FileInfoRepository
 from saul.codebasegraph import CodeBaseGraph
 import networkx
