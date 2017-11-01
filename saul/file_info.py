@@ -1,5 +1,4 @@
 class FileInfo(object):
-
     def __init__(self, file_path, related_files):
         self.file_path = file_path
         self.changes = 1
@@ -8,7 +7,8 @@ class FileInfo(object):
             self.related_files[related_file] = 1
 
     def __str__(self):
-        return 'File Path: {} Changes: {} Related Files: {}'.format(self.file_path, self.changes, self.related_files)
+        return 'File Path: {} Changes: {} Related Files: {}'.format(
+            self.file_path, self.changes, self.related_files)
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__

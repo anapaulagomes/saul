@@ -1,5 +1,5 @@
-import mock
-from saul.file_info_repository import *
+from unittest import mock
+from saul.file_info_repository import FileInfoRepository
 from saul.codebasegraph import CodeBaseGraph
 import networkx
 
@@ -20,7 +20,10 @@ def test_create_codebase_graph_with_files_as_nodes():
     codebase = CodeBaseGraph(repository)
     codebase.make_graph()
 
-    assert set(codebase.files()) == set(['path/to/file.py', 'path/to/another_file.py', 'path/to/some_file.py'])
+    expected_files = [
+        'path/to/file.py', 'path/to/another_file.py', 'path/to/some_file.py'
+    ]
+    assert set(codebase.files()) == set(expected_files)
 
 
 def test_create_codebase_graph_with_related_files_as_edges():
@@ -43,7 +46,8 @@ def test_create_codebase_graph_with_related_files_as_edges():
 
     assert find_edge(all_edges, ('path/to/file.py', 'path/to/another_file.py'))
     assert find_edge(all_edges, ('path/to/file.py', 'path/to/some_file.py'))
-    assert find_edge(all_edges, ('path/to/another_file.py', 'path/to/some_file.py'))
+    assert find_edge(all_edges,
+                     ('path/to/another_file.py', 'path/to/some_file.py'))
 
 
 def test_node_should_know_how_many_times_the_file_was_modified():
@@ -81,12 +85,15 @@ def test_should_generate_gml_file_to_codebase_graph(mock_write_gml):
     assert mock_write_gml.called
 
 
-#added to keep compatibility with py2 and py3 (since the dict order are different in different versions)
+# added to keep compatibility with py2 and py3 (since the dict order are different in different versions)
 def find_edge(all_edges, wanted_edge):
     for edge in all_edges:
-        if edge[0] == wanted_edge[0] or edge[0] == wanted_edge[1] and edge[1] == wanted_edge[0] or edge[1] == wanted_edge[1]:
+        found_node_one = edge[0] == wanted_edge[0] or edge[0] == wanted_edge[1]
+        found_node_two = edge[1] == wanted_edge[0] or edge[1] == wanted_edge[1]
+        if found_node_one and found_node_two:
             return True
     return False
+
 
 def find_node(all_nodes, wanted_node):
     for node, data in all_nodes:

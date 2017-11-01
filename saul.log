@@ -53,7 +53,7 @@ Author: Ana Paula Gomes <apgomes88@gmail.com>
 Date:   Thu May 18 18:15:34 2017 -0300
 
     Merge pull request #3 from anapaulagomes/code-base-graph
-    
+
     Create code base graph
 
 commit f5ad552a0263fe6fdea07ec0a88b779baf301a0f
@@ -164,7 +164,7 @@ Author: Ana Paula Gomes <apgomes88@gmail.com>
 Date:   Tue May 2 11:51:00 2017 -0300
 
     Merge pull request #2 from anapaulagomes/changes_per_file
-    
+
     Parse log to find amount of changes per file
 
 commit 1af5e26858c473351a4c928e2edb322b7ef193b5
@@ -219,7 +219,7 @@ Author: Ana Paula Gomes <apgomes88@gmail.com>
 Date:   Mon Apr 24 19:05:47 2017 -0300
 
     Merge pull request #1 from anapaulagomes/raw_log_formatting
-    
+
     Use git log --raw formating and ignore merge commits
 
 commit 40fe2f59d90093e414013ba5d5b3b467bc288a48
