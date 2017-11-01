@@ -10,9 +10,6 @@ class FileInfo(object):
         return 'File Path: {} Changes: {} Related Files: {}'.format(
             self.file_path, self.changes, self.related_files)
 
-    def __eq__(self, other):
-        return self.__dict__ == other.__dict__
-
     def add_change(self, related_files):
         self.changes += 1
         for related_file in related_files:
