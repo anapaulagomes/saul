@@ -1,4 +1,2 @@
 decorator==4.1.2
 networkx==2.0
-py==1.4.34
-pytest==3.2.3
