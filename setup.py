@@ -6,8 +6,8 @@ except ImportError:
 
 setup(
     name='saul',
-    version='0.1.0',
-    description='Project Git log analyzer',
+    version='0.0.1',
+    description='Git log analyzer',
     author=['Ana Paula Gomes', 'Marcos Brizeno'],
     author_email=['apgomes88@gmail.com', 'marcos.uece.comp@gmail.com'],
     url='https://github.com/anapaulagomes/saul',
