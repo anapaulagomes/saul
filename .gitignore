@@ -1,16 +1,21 @@
-venv/
+# macos
 **.DS_Store
-.tox
+
+# build
 bin/
 dist/
 build/
 wheelhouse/
 *.egg-info/
 *.py[co]
-__pycache__/
+
+# tests
 .tox
-doc/_build/
+__pycache__/
 .cache
-.coverage
 .python-version
+
+# codecoverage
+.coverage
 htmlcov/
+coverage.xml
