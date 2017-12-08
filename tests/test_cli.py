@@ -1,17 +1,14 @@
 from saul.cli import main
 from click.testing import CliRunner
+import sys
 
 
 def test_receive_git_log_by_command_line():
+    project_folder = sys.path[0]
+    directory = project_folder + '/tests/fixtures/'
+
     runner = CliRunner()
-    result = runner.invoke(main, ['saul.log'])
-
-    assert result.exit_code == 0
-
-
-def test_when_the_user_does_not_inform_a_file_assume_one_as_default():
-    runner = CliRunner()
-    result = runner.invoke(main, [])
+    result = runner.invoke(main, [directory + 'saul.log'])
 
     assert result.exit_code == 0
 
