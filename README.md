@@ -1,6 +1,6 @@
 # Better call Saul 🔎
 
-[![Build Status](https://travis-ci.org/anapaulagomes/saul.svg?branch=master)](https://travis-ci.org/anapaulagomes/saul) [![Code Climate](https://codeclimate.com/github/anapaulagomes/saul/badges/gpa.svg)](https://codeclimate.com/github/anapaulagomes/saul) [![Code Health](https://landscape.io/github/anapaulagomes/saul/master/landscape.svg?style=flat)](https://landscape.io/github/anapaulagomes/saul/master)
+[![Build Status](https://travis-ci.org/anapaulagomes/saul.svg?branch=master)](https://travis-ci.org/anapaulagomes/saul) [![codecov](https://codecov.io/gh/anapaulagomes/saul/branch/master/graph/badge.svg)](https://codecov.io/gh/anapaulagomes/saul)
 
 Saul is a tool to analyze git logs and suggest areas of improvement, based on the project history.
 
