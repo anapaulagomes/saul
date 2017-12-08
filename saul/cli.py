@@ -3,7 +3,7 @@ import click
 
 
 @click.command()
-@click.argument('log', nargs=1, type=click.Path(exists=True), default='saul.log')
+@click.argument('log', nargs=1, type=click.Path(exists=True))
 def main(log):
     click.echo('========== Better Call Saul ==========')
 
