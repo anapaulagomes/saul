@@ -3,9 +3,9 @@ mock==2.0.0
 pluggy==0.6.0
 mock==2.0.0
 py==1.5.3
-pytest==3.5.1
+pytest==3.6.0
 pytest-cov==2.5.1
 six==1.11.0
 tox==3.0.0
-virtualenv==15.2.0
+virtualenv==16.0.0
 yapf==0.21.0
