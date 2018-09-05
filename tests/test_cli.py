@@ -1,14 +1,13 @@
 from saul.cli import main
 from click.testing import CliRunner
-import sys
+import os
 
 
 def test_receive_git_log_by_command_line():
-    project_folder = sys.path[0]
-    directory = project_folder + '/tests/fixtures/'
+    log = [os.getcwd() + '/tests/fixtures/saul.log']
 
     runner = CliRunner()
-    result = runner.invoke(main, [directory + 'saul.log'])
+    result = runner.invoke(main, log)
 
     assert result.exit_code == 0
 
