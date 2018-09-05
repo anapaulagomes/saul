@@ -1,3 +1,0 @@
-- Finish graph implementation
-- Find files with highest frequency of change
-- Adopt pytest fixtures

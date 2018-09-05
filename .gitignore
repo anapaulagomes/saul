@@ -14,8 +14,12 @@ wheelhouse/
 __pycache__/
 .cache
 .python-version
+.pytest_cache/
 
 # codecoverage
 .coverage
 htmlcov/
 coverage.xml
+
+# virtualenv
+saul-dev/
