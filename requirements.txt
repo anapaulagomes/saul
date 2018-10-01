@@ -1,2 +1,2 @@
 click==7.0
-networkx==2.1
+networkx==2.2
